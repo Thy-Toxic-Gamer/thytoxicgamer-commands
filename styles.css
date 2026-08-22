@@ -24,7 +24,7 @@ body {
   background-color: var(--background);
   background-image:
     linear-gradient(180deg, rgba(3, 5, 4, 0.28), rgba(3, 5, 4, 0.78)),
-    url("assets/toxic-command-center-background-v1.webp");
+    url("toxic-command-center-background-v1.webp");
   background-position: center top;
   background-size: cover;
   background-attachment: fixed;

@@ -14,9 +14,9 @@ Publish from the `main` branch and the repository root (`/`). The site entry poi
 
 ## Graphics
 
-- `assets/toxic-command-center-banner-v1.webp` is the optimized website banner.
-- `assets/toxic-command-center-background-v1.webp` is the optimized page background.
-- `assets/toxic-command-center-banner-concept-v1.png` is the full-quality banner and social-sharing image.
+- `toxic-command-center-banner-v1.webp` is the optimized website banner.
+- `toxic-command-center-background-v1.webp` is the optimized page background.
+- `toxic-command-center-banner-concept-v1.png` is the full-quality banner and social-sharing image.
 
 ## Privacy
 
