@@ -1,0 +1,23 @@
+.permission {
+  color: #aebbb2;
+  background: #252d27;
+  border: 1px solid #343d37;
+}
+
+.permission-moderator {
+  color: #35f68a;
+  background: #102b1e;
+  border-color: #1d5737;
+}
+
+.permission-super-moderator {
+  color: #ffb21a;
+  background: #30220b;
+  border-color: #63450c;
+}
+
+.permission-everyone-moderator {
+  color: #c5a6ff;
+  background: #261a3e;
+  border-color: #4e367b;
+}

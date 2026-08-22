@@ -87,7 +87,8 @@ function renderCommands() {
     name.append(makeElement("code", "", item.command));
     if (item.usage) name.append(makeElement("small", "", item.usage));
     const platformClass = item.platform.toLowerCase().replace(".", "").replace("stream", "stream-");
-    row.append(name, makeElement("span", `platform platform-${platformClass}`, item.platform), makeElement("span", "permission", item.permission), makeElement("p", "", item.description));
+    const permissionClass = item.permission.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-");
+    row.append(name, makeElement("span", `platform platform-${platformClass}`, item.platform), makeElement("span", `permission permission-${permissionClass}`, item.permission), makeElement("p", "", item.description));
     list.append(row);
   });
 
