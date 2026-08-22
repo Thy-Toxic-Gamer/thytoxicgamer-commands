@@ -4,6 +4,16 @@
   border: 1px solid #343d37;
 }
 
+.site-header {
+  grid-template-columns: 1fr auto;
+}
+
+.eyebrow {
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
 .permission-moderator {
   color: #35f68a;
   background: #102b1e;
@@ -20,4 +30,50 @@
   color: #c5a6ff;
   background: #261a3e;
   border-color: #4e367b;
+}
+
+.permission-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-top: 1px solid #27352b;
+  border-left: 4px solid #7f9184;
+  background: #0b100d;
+}
+
+.permission-group h2 {
+  margin: 0;
+  color: #c3cec6;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.permission-group span {
+  min-width: 30px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #aebbb2;
+  background: #252d27;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.permission-group-moderator {
+  border-left-color: #35f68a;
+}
+
+.permission-group-moderator h2 {
+  color: #35f68a;
+}
+
+.permission-group-super-moderator {
+  border-left-color: #ffb21a;
+}
+
+.permission-group-super-moderator h2 {
+  color: #ffb21a;
 }

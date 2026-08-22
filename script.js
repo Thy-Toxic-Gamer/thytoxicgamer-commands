@@ -74,14 +74,28 @@ function renderTabs() {
 
 function renderCommands() {
   const query = search.value.trim().toLowerCase();
+  const groupOrder = { "Everyone": 0, "Moderator": 1, "Super Moderator": 2 };
+  const permissionGroup = (permission) => permission === "Super Moderator" ? "Super Moderator" : permission === "Moderator" ? "Moderator" : "Everyone";
   const filtered = commands.filter((item) => {
     const platformMatch = activeFilter === "All" || item.platform === activeFilter;
     const textMatch = !query || Object.values(item).some((value) => value.toLowerCase().includes(query));
     return platformMatch && textMatch;
+  }).sort((a, b) => {
+    const groupDifference = groupOrder[permissionGroup(a.permission)] - groupOrder[permissionGroup(b.permission)];
+    return groupDifference || a.command.localeCompare(b.command);
   });
 
   list.replaceChildren();
+  let currentGroup = "";
   filtered.forEach((item) => {
+    const group = permissionGroup(item.permission);
+    if (group !== currentGroup) {
+      currentGroup = group;
+      const title = group === "Moderator" ? "Moderator Commands" : group === "Super Moderator" ? "Super Moderator Commands" : "Everyone Commands";
+      const heading = makeElement("div", `permission-group permission-group-${group.toLowerCase().replace(" ", "-")}`);
+      heading.append(makeElement("h2", "", title), makeElement("span", "", filtered.filter((command) => permissionGroup(command.permission) === group).length));
+      list.append(heading);
+    }
     const row = makeElement("article", "command-row");
     const name = makeElement("div", "command-name");
     name.append(makeElement("code", "", item.command));
