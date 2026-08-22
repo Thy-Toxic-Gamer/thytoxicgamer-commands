@@ -26,7 +26,6 @@ const commands = [
   ["!winner","Streamer.bot","Moderator","Selects a random eligible viewer from chat."],
   ["!youtube","Streamer.bot","Everyone","Posts the YouTube link for reruns and occasional livestreams."],
   ["!addpoints","StreamElements","Super Moderator","Adds Toxic Tokens to a viewer's balance.","!addpoints <username> <amount>"],
-  ["!commands","StreamElements","Everyone","Posts the channel's StreamElements command-page link."],
   ["!emotes","StreamElements","Everyone","Displays the active BTTV emotes available in chat."],
   ["!givepoints","StreamElements","Everyone","Transfers Toxic Tokens to another viewer.","!givepoints <username> <amount>"],
   ["!items","StreamElements","Everyone","Shows available loyalty-store items."],
