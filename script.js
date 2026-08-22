@@ -1,0 +1,103 @@
+const commands = [
+  ["!tags","Streamer.bot","Moderator","Updates the stream tags used for discovery.","!tags <tags>"],
+  ["!accountage","Streamer.bot","Everyone","Shows how old a viewer's Twitch account is.","!accountage [username]"],
+  ["!blur","Streamer.bot","Everyone","Explains the OBS blur used to hide in-game chat when it gets too toxic."],
+  ["!chatstats","Streamer.bot","Everyone","Displays available chat activity statistics."],
+  ["!commands","Streamer.bot","Everyone","Posts the link to this complete command directory."],
+  ["!discord","Streamer.bot","Everyone","Posts an invite to the ThyToxicGamer Discord community."],
+  ["!donate","Streamer.bot","Everyone","Posts the StreamElements tip-page link."],
+  ["!drops","Streamer.bot","Everyone","Shares current Twitch Drops information."],
+  ["!followage","Streamer.bot","Everyone","Shows how long a viewer has followed the channel.","!followage [username]"],
+  ["!game","Streamer.bot","Everyone / Moderator","Shows the current game; moderators can update the category.","!game [game]"],
+  ["!leaderboard","Streamer.bot","Everyone","Posts the Toxic Tokens leaderboard link."],
+  ["!lurk","Streamer.bot","Everyone","Lets chat know a viewer is lurking while supporting the stream."],
+  ["!marker","Streamer.bot","Moderator","Creates a Twitch stream marker for easy editing later."],
+  ["!modhelp","Streamer.bot","Moderator","Displays the available moderator command help."],
+  ["!modview","Streamer.bot","Moderator","Posts the Twitch Moderator View link."],
+  ["!redeemhelp","Streamer.bot","Everyone","Explains how to browse and redeem Toxic Store rewards."],
+  ["!setup","Streamer.bot","Everyone","Shares information about the streaming setup and tools."],
+  ["!socials","Streamer.bot","Everyone","Posts ThyToxicGamer's social platforms and content links."],
+  ["!song","Streamer.bot","Everyone","Shows information about the currently playing song."],
+  ["!specs","Streamer.bot","Everyone","Displays the gaming PC, streaming gear, and peripherals."],
+  ["!store","Streamer.bot","Everyone","Posts the Toxic Store link for spending Toxic Tokens."],
+  ["!title","Streamer.bot","Everyone / Moderator","Shows the current title; moderators can update it.","!title [new title]"],
+  ["!tokens","Streamer.bot","Everyone","Explains how viewers earn and spend Toxic Tokens."],
+  ["!uptime","Streamer.bot","Everyone","Shows how long the current stream has been live."],
+  ["!winner","Streamer.bot","Moderator","Selects a random eligible viewer from chat."],
+  ["!youtube","Streamer.bot","Everyone","Posts the YouTube link for reruns and occasional livestreams."],
+  ["!addpoints","StreamElements","Super Moderator","Adds Toxic Tokens to a viewer's balance.","!addpoints <username> <amount>"],
+  ["!commands","StreamElements","Everyone","Posts the channel's StreamElements command-page link."],
+  ["!emotes","StreamElements","Everyone","Displays the active BTTV emotes available in chat."],
+  ["!givepoints","StreamElements","Everyone","Transfers Toxic Tokens to another viewer.","!givepoints <username> <amount>"],
+  ["!items","StreamElements","Everyone","Shows available loyalty-store items."],
+  ["!permit","StreamElements","Moderator","Temporarily permits a viewer to post a link.","!permit <username>"],
+  ["!ping","StreamElements","Moderator","Checks whether the StreamElements chatbot is responding."],
+  ["!points","StreamElements","Everyone","Checks a viewer's Toxic Tokens balance and leaderboard rank.","!points [username]"],
+  ["!redeem","StreamElements","Everyone","Redeems an eligible Toxic Store item.","!redeem <item>"],
+  ["!setpoints","StreamElements","Super Moderator","Sets a viewer's Toxic Tokens balance to a specific amount.","!setpoints <username> <amount>"],
+  ["!top","StreamElements","Everyone","Displays the top viewers by Toxic Tokens or watch time.","!top [points|alltime|online|offline]"],
+  ["!watchtime","StreamElements","Everyone","Shows a viewer's accumulated channel watch time.","!watchtime [username]"],
+  ["!filters","Nightbot","Moderator","Manages Nightbot's spam-protection filters.","!filters <filter> [setting]"],
+  ["!poll","Nightbot","Moderator","Creates a StrawPoll or displays the latest poll results.","!poll <new|results>"],
+  ["!regulars","Nightbot","Moderator","Adds or removes viewers from Nightbot's regular-user list.","!regulars <add|delete> <username>"],
+].map(([command, platform, permission, description, usage = ""]) => ({ command, platform, permission, description, usage }));
+
+const filterNames = ["All", "Streamer.bot", "StreamElements", "Nightbot"];
+const tabs = document.querySelector("#tabs");
+const list = document.querySelector("#command-list");
+const search = document.querySelector("#search");
+const totalCount = document.querySelector("#total-count");
+let activeFilter = "All";
+
+totalCount.textContent = commands.length;
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function renderTabs() {
+  tabs.replaceChildren();
+  filterNames.forEach((name) => {
+    const count = name === "All" ? commands.length : commands.filter((item) => item.platform === name).length;
+    const button = makeElement("button", `tab${activeFilter === name ? " active" : ""}`, `${name} `);
+    button.type = "button";
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", String(activeFilter === name));
+    button.append(makeElement("span", "", count));
+    button.addEventListener("click", () => { activeFilter = name; renderTabs(); renderCommands(); });
+    tabs.append(button);
+  });
+}
+
+function renderCommands() {
+  const query = search.value.trim().toLowerCase();
+  const filtered = commands.filter((item) => {
+    const platformMatch = activeFilter === "All" || item.platform === activeFilter;
+    const textMatch = !query || Object.values(item).some((value) => value.toLowerCase().includes(query));
+    return platformMatch && textMatch;
+  });
+
+  list.replaceChildren();
+  filtered.forEach((item) => {
+    const row = makeElement("article", "command-row");
+    const name = makeElement("div", "command-name");
+    name.append(makeElement("code", "", item.command));
+    if (item.usage) name.append(makeElement("small", "", item.usage));
+    const platformClass = item.platform.toLowerCase().replace(".", "").replace("stream", "stream-");
+    row.append(name, makeElement("span", `platform platform-${platformClass}`, item.platform), makeElement("span", "permission", item.permission), makeElement("p", "", item.description));
+    list.append(row);
+  });
+
+  if (!filtered.length) {
+    const empty = makeElement("div", "empty-state");
+    empty.append(makeElement("span", "", "☣"), makeElement("h2", "", "No command survived that search."), makeElement("p", "", "Try another command name, bot, or permission."));
+    list.append(empty);
+  }
+}
+
+search.addEventListener("input", renderCommands);
+renderTabs();
+renderCommands();
