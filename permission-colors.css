@@ -41,7 +41,7 @@
   padding: 16px 20px;
   border-top: 1px solid #27352b;
   border-left: 4px solid #7f9184;
-  background: #0b100d;
+  background: rgba(6, 10, 7, 0.9);
 }
 
 .permission-group h2 {
