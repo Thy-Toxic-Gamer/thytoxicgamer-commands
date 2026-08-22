@@ -9,7 +9,8 @@
 }
 
 .eyebrow {
-  font-size: 16px;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.15;
   letter-spacing: 0.04em;
   text-transform: none;
 }
