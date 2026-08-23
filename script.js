@@ -14,11 +14,13 @@ const commands = [
   ["!marker","Streamer.bot","Moderator","Creates a Twitch stream marker for easy editing later."],
   ["!modhelp","Streamer.bot","Moderator","Displays the available moderator command help."],
   ["!modview","Streamer.bot","Moderator","Posts the Twitch Moderator View link."],
-  ["!redeemhelp","Streamer.bot","Everyone","Explains how to browse and redeem Toxic Store rewards."],
   ["!pcsetup","Streamer.bot","Everyone","Shares information about the PC and streaming setup."],
   ["!socials","Streamer.bot","Everyone","Posts ThyToxicGamer's social platforms and content links."],
   ["!song","Streamer.bot","Everyone","Shows information about the currently playing song."],
   ["!pcspecs","Streamer.bot","Everyone","Displays the gaming PC hardware, streaming gear, and peripherals."],
+  ["!poll","Streamer.bot","Everyone","Posts the public Toxic Poll Center link so viewers can vote in active polls."],
+  ["!pollpanel","Streamer.bot","Moderator","Sends the broadcaster or a moderator a private, temporary link to the Toxic Poll Creator."],
+  ["!redeemhelp","Streamer.bot","Everyone","Explains how to browse and redeem Toxic Store rewards."],
   ["!store","Streamer.bot","Everyone","Posts the Toxic Store link for spending Toxic Tokens."],
   ["!title","Streamer.bot","Everyone / Moderator","Shows the current title; moderators can update it.","!title [new title]"],
   ["!tokens","Streamer.bot","Everyone","Explains how viewers earn and spend Toxic Tokens."],
@@ -37,7 +39,6 @@ const commands = [
   ["!top","StreamElements","Everyone","Displays the top viewers by Toxic Tokens or watch time.","!top [points|alltime|online|offline]"],
   ["!watchtime","StreamElements","Everyone","Shows a viewer's accumulated channel watch time.","!watchtime [username]"],
   ["!filters","Nightbot","Moderator","Manages Nightbot's spam-protection filters.","!filters <filter> [setting]"],
-  ["!poll","Nightbot","Moderator","Creates a StrawPoll or displays the latest poll results.","!poll <new|results>"],
   ["!regulars","Nightbot","Moderator","Adds or removes viewers from Nightbot's regular-user list.","!regulars <add|delete> <username>"],
 ].map(([command, platform, permission, description, usage = ""]) => ({ command, platform, permission, description, usage }));
 
