@@ -2,6 +2,14 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.3
+
+- Removed the inactive `!tokens` and `!winner` commands.
+
+## Version 1.2
+
+- Removed the inactive `!store` command.
+
 ## Version 1.1
 
 - Removed inactive commands: `!items`, `!redeem`, `!setpoints`, `!addpoints`, `!points`, `!givepoints`, and `!emotes`.
