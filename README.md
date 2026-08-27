@@ -2,6 +2,11 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.1
+
+- Removed inactive commands: `!items`, `!redeem`, `!setpoints`, `!addpoints`, `!points`, `!givepoints`, and `!emotes`.
+- Added `!cmds` as an alternate command for `!commands`.
+
 The site catalogs active commands from:
 
 - Streamer.bot
