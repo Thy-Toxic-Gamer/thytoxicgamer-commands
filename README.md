@@ -2,6 +2,10 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.7
+
+- Renamed `!ownedgames` to `!owned`.
+
 ## Version 1.6
 
 - Added `!playlist` for posting the stream music playlist link.

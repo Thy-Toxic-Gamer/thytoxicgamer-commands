@@ -14,7 +14,7 @@ const commands = [
   ["!marker","Streamer.bot","Moderator","Creates a Twitch stream marker for easy editing later."],
   ["!modhelp","Streamer.bot","Moderator","Displays the available moderator command help."],
   ["!modview","Streamer.bot","Moderator","Posts the Twitch Moderator View link."],
-  ["!ownedgames","Streamer.bot","Everyone","Posts the link to ThyToxicGamer's owned-game catalog."],
+  ["!owned","Streamer.bot","Everyone","Posts the link to ThyToxicGamer's owned-game catalog."],
   ["!pcsetup","Streamer.bot","Everyone","Shares information about the PC and streaming setup."],
   ["!playlist","Streamer.bot","Everyone","Posts the link to the music playlist used for the stream."],
   ["!socials","Streamer.bot","Everyone","Posts ThyToxicGamer's social platforms and content links."],
