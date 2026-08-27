@@ -2,6 +2,10 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.4
+
+- Removed the inactive `!redeemhelp` command.
+
 ## Version 1.3
 
 - Removed the inactive `!tokens` and `!winner` commands.

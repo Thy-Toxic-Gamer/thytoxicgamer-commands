@@ -20,7 +20,6 @@ const commands = [
   ["!pcspecs","Streamer.bot","Everyone","Displays the gaming PC hardware, streaming gear, and peripherals."],
   ["!poll","Streamer.bot","Everyone","Posts the public Toxic Poll Center link so viewers can vote in active polls."],
   ["!pollpanel","Streamer.bot","Moderator","Sends the broadcaster or a moderator a private, temporary link to the Toxic Poll Creator."],
-  ["!redeemhelp","Streamer.bot","Everyone","Explains how to browse and redeem Toxic Store rewards."],
   ["!title","Streamer.bot","Everyone / Moderator","Shows the current title; moderators can update it.","!title [new title]"],
   ["!uptime","Streamer.bot","Everyone","Shows how long the current stream has been live."],
   ["!youtube","Streamer.bot","Everyone","Posts the YouTube link for reruns and occasional livestreams."],
