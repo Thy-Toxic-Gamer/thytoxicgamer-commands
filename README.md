@@ -2,6 +2,14 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.6
+
+- Added `!playlist` for posting the stream music playlist link.
+
+## Version 1.5
+
+- Added `!ownedgames` for posting the ThyToxicGamer owned-game catalog link.
+
 ## Version 1.4
 
 - Removed the inactive `!redeemhelp` command.
