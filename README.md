@@ -2,6 +2,11 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 1.8
+
+- Added `!requestgame` for opening the public Game Request System.
+- Added moderator command `!reviewrequest` for opening the protected Staff Control page.
+
 ## Version 1.7
 
 - Renamed `!ownedgames` to `!owned`.
