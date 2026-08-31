@@ -2,45 +2,23 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
-## Version 1.8
+## Version 2.0
 
-- Added `!requestgame` for opening the public Game Request System.
-- Added moderator command `!reviewrequest` for opening the protected Staff Control page.
+- Added separate public-command and staff-reference views.
+- Added source tabs for Streamer.bot, StreamElements, Sapphire, Nightbot, and the future ThyToxicBot.
+- Added platform, access-level, and status filters.
+- Added one-click copying for command usage examples.
+- Added clear Active and Planned status labels.
+- Added the planned `t!warn`, `t!mute`, `t!kick`, and `t!ban` ThyToxicBot commands.
+- Improved keyboard navigation and mobile layouts.
 
-## Version 1.7
+## Command sources
 
-- Renamed `!ownedgames` to `!owned`.
+The directory tracks Streamer.bot, StreamElements, Sapphire, Nightbot, and ThyToxicBot. Sapphire currently has no cataloged commands; its source tab is reserved for future additions.
 
-## Version 1.6
+## Public and staff views
 
-- Added `!playlist` for posting the stream music playlist link.
-
-## Version 1.5
-
-- Added `!ownedgames` for posting the ThyToxicGamer owned-game catalog link.
-
-## Version 1.4
-
-- Removed the inactive `!redeemhelp` command.
-
-## Version 1.3
-
-- Removed the inactive `!tokens` and `!winner` commands.
-
-## Version 1.2
-
-- Removed the inactive `!store` command.
-
-## Version 1.1
-
-- Removed inactive commands: `!items`, `!redeem`, `!setpoints`, `!addpoints`, `!points`, `!givepoints`, and `!emotes`.
-- Added `!cmds` as an alternate command for `!commands`.
-
-The site catalogs active commands from:
-
-- Streamer.bot
-- StreamElements
-- Nightbot
+Public view is the default and lists active commands available to everyone. Staff reference adds moderator, owner, and planned commands. The staff view is an organizational reference only; command permissions remain enforced by Twitch, Discord, and each bot platform.
 
 ## GitHub Pages
 

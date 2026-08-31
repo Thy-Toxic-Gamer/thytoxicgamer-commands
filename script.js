@@ -1,48 +1,55 @@
 const commands = [
-  ["!tags","Streamer.bot","Moderator","Updates the stream tags used for discovery.","!tags <tags>"],
-  ["!accountage","Streamer.bot","Everyone","Shows how old a viewer's Twitch account is.","!accountage [username]"],
-  ["!blur","Streamer.bot","Everyone","Explains the OBS blur used to hide in-game chat when it gets too toxic."],
-  ["!chatstats","Streamer.bot","Everyone","Displays available chat activity statistics."],
-  ["!commands","Streamer.bot","Everyone","Posts the link to this complete command directory.","Alias: !cmds"],
-  ["!discord","Streamer.bot","Everyone","Posts an invite to the ThyToxicGamer Discord community."],
-  ["!donate","Streamer.bot","Everyone","Posts the StreamElements tip-page link."],
-  ["!drops","Streamer.bot","Everyone","Shares current Twitch Drops information."],
-  ["!followage","Streamer.bot","Everyone","Shows how long a viewer has followed the channel.","!followage [username]"],
-  ["!game","Streamer.bot","Everyone / Moderator","Shows the current game; moderators can update the category.","!game [game]"],
-  ["!leaderboard","Streamer.bot","Everyone","Posts the Toxic Tokens leaderboard link."],
-  ["!lurk","Streamer.bot","Everyone","Lets chat know a viewer is lurking while supporting the stream."],
-  ["!marker","Streamer.bot","Moderator","Creates a Twitch stream marker for easy editing later."],
-  ["!modhelp","Streamer.bot","Moderator","Displays the available moderator command help."],
-  ["!modview","Streamer.bot","Moderator","Posts the Twitch Moderator View link."],
-  ["!owned","Streamer.bot","Everyone","Posts the link to ThyToxicGamer's owned-game catalog."],
-  ["!pcsetup","Streamer.bot","Everyone","Shares information about the PC and streaming setup."],
-  ["!playlist","Streamer.bot","Everyone","Posts the link to the music playlist used for the stream."],
-  ["!socials","Streamer.bot","Everyone","Posts ThyToxicGamer's social platforms and content links."],
-  ["!song","Streamer.bot","Everyone","Shows information about the currently playing song."],
-  ["!pcspecs","Streamer.bot","Everyone","Displays the gaming PC hardware, streaming gear, and peripherals."],
-  ["!poll","Streamer.bot","Everyone","Posts the public Toxic Poll Center link so viewers can vote in active polls."],
-  ["!pollpanel","Streamer.bot","Moderator","Sends the broadcaster or a moderator a private, temporary link to the Toxic Poll Creator."],
-  ["!requestgame","Streamer.bot","Everyone","Posts the Game Request System link so viewers can request a game or view their request status."],
-  ["!reviewrequest","Streamer.bot","Moderator","Posts the protected Staff Control link for reviewing and managing game requests."],
-  ["!title","Streamer.bot","Everyone / Moderator","Shows the current title; moderators can update it.","!title [new title]"],
-  ["!uptime","Streamer.bot","Everyone","Shows how long the current stream has been live."],
-  ["!youtube","Streamer.bot","Everyone","Posts the YouTube link for reruns and occasional livestreams."],
-  ["!permit","StreamElements","Moderator","Temporarily permits a viewer to post a link.","!permit <username>"],
-  ["!ping","StreamElements","Moderator","Checks whether the StreamElements chatbot is responding."],
-  ["!top","StreamElements","Everyone","Displays the top viewers by Toxic Tokens or watch time.","!top [points|alltime|online|offline]"],
-  ["!watchtime","StreamElements","Everyone","Shows a viewer's accumulated channel watch time.","!watchtime [username]"],
-  ["!filters","Nightbot","Moderator","Manages Nightbot's spam-protection filters.","!filters <filter> [setting]"],
-  ["!regulars","Nightbot","Moderator","Adds or removes viewers from Nightbot's regular-user list.","!regulars <add|delete> <username>"],
-].map(([command, platform, permission, description, usage = ""]) => ({ command, platform, permission, description, usage }));
+  { command: "!tags", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Updates the stream tags used for discovery.", usage: "!tags <tags>" },
+  { command: "!accountage", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows how old a viewer's Twitch account is.", usage: "!accountage [username]" },
+  { command: "!blur", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Explains the OBS blur used to hide in-game chat when it gets too toxic.", usage: "!blur" },
+  { command: "!chatstats", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Displays available chat activity statistics.", usage: "!chatstats" },
+  { command: "!commands", aliases: ["!cmds"], source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the link to this complete command directory.", usage: "!commands" },
+  { command: "!discord", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts an invite to the ThyToxicGamer Discord community.", usage: "!discord" },
+  { command: "!donate", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the StreamElements tip-page link.", usage: "!donate" },
+  { command: "!drops", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shares current Twitch Drops information.", usage: "!drops" },
+  { command: "!followage", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows how long a viewer has followed the channel.", usage: "!followage [username]" },
+  { command: "!game", source: "Streamer.bot", access: "Everyone", elevatedAccess: "Moderator", platform: ["Twitch"], status: "Active", description: "Shows the current game. Moderators can also update the category.", usage: "!game [game]" },
+  { command: "!leaderboard", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the Toxic Tokens leaderboard link.", usage: "!leaderboard" },
+  { command: "!lurk", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Lets chat know a viewer is lurking while supporting the stream.", usage: "!lurk" },
+  { command: "!marker", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Creates a Twitch stream marker for easy editing later.", usage: "!marker" },
+  { command: "!modhelp", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Displays the available moderator command help.", usage: "!modhelp" },
+  { command: "!modview", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Posts the Twitch Moderator View link.", usage: "!modview" },
+  { command: "!owned", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the link to ThyToxicGamer's owned-game catalog.", usage: "!owned" },
+  { command: "!pcsetup", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shares information about the PC and streaming setup.", usage: "!pcsetup" },
+  { command: "!playlist", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the link to the music playlist used for the stream.", usage: "!playlist" },
+  { command: "!socials", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts ThyToxicGamer's social platforms and content links.", usage: "!socials" },
+  { command: "!song", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows information about the currently playing song.", usage: "!song" },
+  { command: "!pcspecs", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Displays the gaming PC hardware, streaming gear, and peripherals.", usage: "!pcspecs" },
+  { command: "!poll", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the public Toxic Poll Center link so viewers can vote in active polls.", usage: "!poll" },
+  { command: "!pollpanel", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Sends a broadcaster or moderator a private, temporary link to the Toxic Poll Creator.", usage: "!pollpanel" },
+  { command: "!requestgame", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the Game Request System link so viewers can request a game or view their status.", usage: "!requestgame" },
+  { command: "!reviewrequest", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Posts the protected Staff Control link for reviewing and managing game requests.", usage: "!reviewrequest" },
+  { command: "!title", source: "Streamer.bot", access: "Everyone", elevatedAccess: "Moderator", platform: ["Twitch"], status: "Active", description: "Shows the current title. Moderators can also update it.", usage: "!title [new title]" },
+  { command: "!uptime", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows how long the current stream has been live.", usage: "!uptime" },
+  { command: "!youtube", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the YouTube link for reruns and occasional livestreams.", usage: "!youtube" },
+  { command: "!permit", source: "StreamElements", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Temporarily permits a viewer to post a link.", usage: "!permit <username>" },
+  { command: "!ping", source: "StreamElements", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Checks whether the StreamElements chatbot is responding.", usage: "!ping" },
+  { command: "!top", source: "StreamElements", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Displays the top viewers by Toxic Tokens or watch time.", usage: "!top [points|alltime|online|offline]" },
+  { command: "!watchtime", source: "StreamElements", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows a viewer's accumulated channel watch time.", usage: "!watchtime [username]" },
+  { command: "!filters", source: "Nightbot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Manages Nightbot's spam-protection filters.", usage: "!filters <filter> [setting]" },
+  { command: "!regulars", source: "Nightbot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Adds or removes viewers from Nightbot's regular-user list.", usage: "!regulars <add|delete> <username>" },
+  { command: "t!warn", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Records a moderation warning for a Discord member.", usage: "t!warn <member> <reason>" },
+  { command: "t!mute", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Temporarily prevents a Discord member from chatting.", usage: "t!mute <member> <duration> [reason]" },
+  { command: "t!kick", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Removes a Discord member from the server.", usage: "t!kick <member> [reason]" },
+  { command: "t!ban", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Bans a Discord member from the server.", usage: "t!ban <member> [reason]" },
+];
 
-const filterNames = ["All", "Streamer.bot", "StreamElements", "Nightbot"];
-const tabs = document.querySelector("#tabs");
-const list = document.querySelector("#command-list");
-const search = document.querySelector("#search");
-const totalCount = document.querySelector("#total-count");
-let activeFilter = "All";
+const sources = ["All", "Streamer.bot", "StreamElements", "Sapphire", "Nightbot", "ThyToxicBot"];
+const state = { source: "All", view: "public" };
+const elements = {
+  tabs: document.querySelector("#tabs"), list: document.querySelector("#command-list"), search: document.querySelector("#search"),
+  platform: document.querySelector("#platform-filter"), access: document.querySelector("#access-filter"), status: document.querySelector("#status-filter"),
+  summary: document.querySelector("#result-summary"), clear: document.querySelector("#clear-filters"), toast: document.querySelector("#copy-toast"),
+  note: document.querySelector("#view-note"), viewButtons: [...document.querySelectorAll(".view-button")],
+};
 
-totalCount.textContent = commands.length;
+document.querySelector("#total-count").textContent = commands.filter((item) => item.status === "Active").length;
+document.querySelector("#source-count").textContent = sources.length - 1;
 
 function makeElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -51,61 +58,163 @@ function makeElement(tag, className, text) {
   return element;
 }
 
+function visibleForView(item) { return state.view === "staff" || (item.access === "Everyone" && item.status === "Active"); }
+function availableCommands() { return commands.filter(visibleForView); }
+
 function renderTabs() {
-  tabs.replaceChildren();
-  filterNames.forEach((name) => {
-    const count = name === "All" ? commands.length : commands.filter((item) => item.platform === name).length;
-    const button = makeElement("button", `tab${activeFilter === name ? " active" : ""}`, `${name} `);
+  const available = availableCommands();
+  elements.tabs.replaceChildren();
+  sources.forEach((source) => {
+    const count = source === "All" ? available.length : available.filter((item) => item.source === source).length;
+    const button = makeElement("button", `tab${state.source === source ? " active" : ""}`);
     button.type = "button";
     button.setAttribute("role", "tab");
-    button.setAttribute("aria-selected", String(activeFilter === name));
-    button.append(makeElement("span", "", count));
-    button.addEventListener("click", () => { activeFilter = name; renderTabs(); renderCommands(); });
-    tabs.append(button);
+    button.setAttribute("aria-selected", String(state.source === source));
+    button.append(makeElement("span", "tab-name", source), makeElement("span", "tab-count", count));
+    button.addEventListener("click", () => { state.source = source; renderTabs(); renderCommands(); });
+    elements.tabs.append(button);
   });
+}
+
+function matchesSearch(item, query) {
+  if (!query) return true;
+  return [item.command, ...(item.aliases || []), item.source, item.access, ...item.platform, item.status, item.description, item.usage]
+    .some((value) => value.toLowerCase().includes(query));
+}
+
+function getFilteredCommands() {
+  const query = elements.search.value.trim().toLowerCase();
+  return availableCommands()
+    .filter((item) => state.source === "All" || item.source === state.source)
+    .filter((item) => elements.platform.value === "All" || item.platform.includes(elements.platform.value))
+    .filter((item) => elements.access.value === "All" || item.access === elements.access.value)
+    .filter((item) => elements.status.value === "All" || item.status === elements.status.value)
+    .filter((item) => matchesSearch(item, query))
+    .sort((a, b) => a.command.localeCompare(b.command));
+}
+
+function groupFor(item) { return ["Moderator", "Owner"].includes(item.access) ? item.access : "Viewer"; }
+function tag(text, className = "") { return makeElement("span", `meta-tag ${className}`.trim(), text); }
+
+let toastTimer;
+function showToast(message) {
+  window.clearTimeout(toastTimer);
+  elements.toast.textContent = message;
+  elements.toast.classList.add("visible");
+  toastTimer = window.setTimeout(() => elements.toast.classList.remove("visible"), 2200);
+}
+
+async function copyCommand(item, button) {
+  try {
+    await navigator.clipboard.writeText(item.usage || item.command);
+  } catch {
+    const helper = document.createElement("textarea");
+    helper.value = item.usage || item.command;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.append(helper);
+    helper.select();
+    document.execCommand("copy");
+    helper.remove();
+  }
+  button.textContent = "Copied";
+  showToast(`${item.command} copied to clipboard`);
+  window.setTimeout(() => { button.textContent = "Copy"; }, 1400);
+}
+
+function createCommandCard(item) {
+  const card = makeElement("article", "command-card");
+  const top = makeElement("div", "card-top");
+  const identity = makeElement("div", "command-identity");
+  const commandLine = makeElement("div", "command-line");
+  commandLine.append(makeElement("code", "command-name", item.command));
+  if (item.aliases?.length) commandLine.append(makeElement("span", "alias", `Alias ${item.aliases.join(", ")}`));
+  identity.append(commandLine, makeElement("p", "command-description", item.description));
+  const copy = makeElement("button", "copy-button", "Copy");
+  copy.type = "button";
+  copy.setAttribute("aria-label", `Copy usage for ${item.command}`);
+  copy.addEventListener("click", () => copyCommand(item, copy));
+  top.append(identity, copy);
+
+  const usage = makeElement("div", "usage-row");
+  usage.append(makeElement("span", "usage-label", "Usage"), makeElement("code", "usage-code", item.usage || item.command));
+  const metadata = makeElement("div", "metadata");
+  metadata.append(tag(item.source, `source-${item.source.toLowerCase().replaceAll(".", "").replaceAll(" ", "-")}`));
+  item.platform.forEach((platform) => metadata.append(tag(platform, `platform-${platform.toLowerCase()}`)));
+  const accessText = item.elevatedAccess ? `${item.access} · ${item.elevatedAccess} controls` : item.access;
+  metadata.append(tag(accessText, `access-${item.access.toLowerCase()}`));
+  metadata.append(tag(item.status, `status-${item.status.toLowerCase()}`));
+  card.append(top, usage, metadata);
+  return card;
 }
 
 function renderCommands() {
-  const query = search.value.trim().toLowerCase();
-  const groupOrder = { "Everyone": 0, "Moderator": 1, "Super Moderator": 2 };
-  const permissionGroup = (permission) => permission === "Super Moderator" ? "Super Moderator" : permission === "Moderator" ? "Moderator" : "Everyone";
-  const filtered = commands.filter((item) => {
-    const platformMatch = activeFilter === "All" || item.platform === activeFilter;
-    const textMatch = !query || Object.values(item).some((value) => value.toLowerCase().includes(query));
-    return platformMatch && textMatch;
-  }).sort((a, b) => {
-    const groupDifference = groupOrder[permissionGroup(a.permission)] - groupOrder[permissionGroup(b.permission)];
-    return groupDifference || a.command.localeCompare(b.command);
+  const filtered = getFilteredCommands();
+  elements.list.replaceChildren();
+  elements.summary.textContent = `${filtered.length} ${filtered.length === 1 ? "command" : "commands"} shown`;
+  ["Viewer", "Moderator", "Owner"].forEach((group) => {
+    const groupCommands = filtered.filter((item) => groupFor(item) === group);
+    if (!groupCommands.length) return;
+    const section = makeElement("section", "command-group");
+    const heading = makeElement("div", `group-heading group-${group.toLowerCase()}`);
+    const headingCopy = makeElement("div");
+    headingCopy.append(
+      makeElement("h3", "", group === "Viewer" ? "Viewer commands" : `${group} commands`),
+      makeElement("p", "", group === "Viewer" ? "Available to the community" : group === "Moderator" ? "Channel and server management tools" : "Broadcaster-only controls"),
+    );
+    heading.append(headingCopy, makeElement("span", "group-count", groupCommands.length));
+    const grid = makeElement("div", "command-grid");
+    groupCommands.forEach((item) => grid.append(createCommandCard(item)));
+    section.append(heading, grid);
+    elements.list.append(section);
   });
-
-  list.replaceChildren();
-  let currentGroup = "";
-  filtered.forEach((item) => {
-    const group = permissionGroup(item.permission);
-    if (group !== currentGroup) {
-      currentGroup = group;
-      const title = group === "Moderator" ? "Moderator Commands" : group === "Super Moderator" ? "Super Moderator Commands" : "Everyone Commands";
-      const heading = makeElement("div", `permission-group permission-group-${group.toLowerCase().replace(" ", "-")}`);
-      heading.append(makeElement("h2", "", title), makeElement("span", "", filtered.filter((command) => permissionGroup(command.permission) === group).length));
-      list.append(heading);
-    }
-    const row = makeElement("article", "command-row");
-    const name = makeElement("div", "command-name");
-    name.append(makeElement("code", "", item.command));
-    if (item.usage) name.append(makeElement("small", "", item.usage));
-    const platformClass = item.platform.toLowerCase().replace(".", "").replace("stream", "stream-");
-    const permissionClass = item.permission.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-");
-    row.append(name, makeElement("span", `platform platform-${platformClass}`, item.platform), makeElement("span", `permission permission-${permissionClass}`, item.permission), makeElement("p", "", item.description));
-    list.append(row);
-  });
-
   if (!filtered.length) {
     const empty = makeElement("div", "empty-state");
-    empty.append(makeElement("span", "", "☣"), makeElement("h2", "", "No command survived that search."), makeElement("p", "", "Try another command name, bot, or permission."));
-    list.append(empty);
+    const selectedSourceIsEmpty = state.source !== "All" && !availableCommands().some((item) => item.source === state.source);
+    empty.append(
+      makeElement("span", "", "☣"),
+      makeElement("h3", "", selectedSourceIsEmpty ? `No ${state.source} commands yet` : "No command survived that search"),
+      makeElement("p", "", selectedSourceIsEmpty ? "This source is reserved and ready for commands when they are added." : "Try another search term or clear the filters."),
+    );
+    elements.list.append(empty);
   }
 }
 
-search.addEventListener("input", renderCommands);
+function setView(view) {
+  state.view = view;
+  state.source = "All";
+  elements.viewButtons.forEach((button) => {
+    const active = button.dataset.view === view;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  elements.note.textContent = view === "public"
+    ? "Public view shows active commands everyone can use. Choose Staff reference to include moderator, owner, and planned tools."
+    : "Staff reference includes moderator and planned commands. This public directory is a reference—not a replacement for platform permissions.";
+  renderTabs();
+  renderCommands();
+}
+
+function clearFilters() {
+  state.source = "All";
+  elements.search.value = "";
+  elements.platform.value = "All";
+  elements.access.value = "All";
+  elements.status.value = "All";
+  renderTabs();
+  renderCommands();
+  elements.search.focus();
+}
+
+elements.search.addEventListener("input", renderCommands);
+[elements.platform, elements.access, elements.status].forEach((select) => select.addEventListener("change", renderCommands));
+elements.clear.addEventListener("click", clearFilters);
+elements.viewButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
+document.addEventListener("keydown", (event) => {
+  if (event.key === "/" && document.activeElement !== elements.search) { event.preventDefault(); elements.search.focus(); }
+  if (event.key === "Escape" && document.activeElement === elements.search) { elements.search.value = ""; elements.search.blur(); renderCommands(); }
+});
+
 renderTabs();
 renderCommands();
