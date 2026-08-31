@@ -2,6 +2,13 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 2.1
+
+- Added all 79 Sapphire default slash commands using descriptions and syntax captured from Sapphire's built-in help.
+- Added Sapphire categories for General, Auto Moderation, Information, Interactions, Join Roles, Logging, Messages, Moderation, and Reaction Roles.
+- Added a category filter to make the expanded directory easier to search.
+- Marked Sapphire permissions as configurable in its dashboard.
+
 ## Version 2.0
 
 - Added separate public-command and staff-reference views.
@@ -14,7 +21,7 @@ Public, searchable command directory for the ThyToxicGamer community.
 
 ## Command sources
 
-The directory tracks Streamer.bot, StreamElements, Sapphire, Nightbot, and ThyToxicBot. Sapphire currently has no cataloged commands; its source tab is reserved for future additions.
+The directory tracks Streamer.bot, StreamElements, Sapphire, Nightbot, and ThyToxicBot. Sapphire includes its complete catalog of 79 default slash commands.
 
 ## Public and staff views
 

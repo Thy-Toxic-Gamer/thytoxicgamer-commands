@@ -37,19 +37,30 @@ const commands = [
   { command: "t!mute", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Temporarily prevents a Discord member from chatting.", usage: "t!mute <member> <duration> [reason]" },
   { command: "t!kick", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Removes a Discord member from the server.", usage: "t!kick <member> [reason]" },
   { command: "t!ban", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Bans a Discord member from the server.", usage: "t!ban <member> [reason]" },
-];
+  ...sapphireCommands,
+].map((item) => ({
+  category: item.category || (item.source === "ThyToxicBot" ? "Moderation" : item.source === "Nightbot" ? "Moderation" : "Channel"),
+  ...item,
+}));
 
 const sources = ["All", "Streamer.bot", "StreamElements", "Sapphire", "Nightbot", "ThyToxicBot"];
 const state = { source: "All", view: "public" };
 const elements = {
   tabs: document.querySelector("#tabs"), list: document.querySelector("#command-list"), search: document.querySelector("#search"),
-  platform: document.querySelector("#platform-filter"), access: document.querySelector("#access-filter"), status: document.querySelector("#status-filter"),
+  platform: document.querySelector("#platform-filter"), access: document.querySelector("#access-filter"), category: document.querySelector("#category-filter"), status: document.querySelector("#status-filter"),
   summary: document.querySelector("#result-summary"), clear: document.querySelector("#clear-filters"), toast: document.querySelector("#copy-toast"),
   note: document.querySelector("#view-note"), viewButtons: [...document.querySelectorAll(".view-button")],
 };
 
 document.querySelector("#total-count").textContent = commands.filter((item) => item.status === "Active").length;
 document.querySelector("#source-count").textContent = sources.length - 1;
+
+[...new Set(commands.map((item) => item.category))].sort().forEach((category) => {
+  const option = document.createElement("option");
+  option.value = category;
+  option.textContent = category;
+  elements.category.append(option);
+});
 
 function makeElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -78,7 +89,7 @@ function renderTabs() {
 
 function matchesSearch(item, query) {
   if (!query) return true;
-  return [item.command, ...(item.aliases || []), item.source, item.access, ...item.platform, item.status, item.description, item.usage]
+  return [item.command, ...(item.aliases || []), item.source, item.access, item.category, item.accessNote || "", ...item.platform, item.status, item.description, item.usage]
     .some((value) => value.toLowerCase().includes(query));
 }
 
@@ -88,6 +99,7 @@ function getFilteredCommands() {
     .filter((item) => state.source === "All" || item.source === state.source)
     .filter((item) => elements.platform.value === "All" || item.platform.includes(elements.platform.value))
     .filter((item) => elements.access.value === "All" || item.access === elements.access.value)
+    .filter((item) => elements.category.value === "All" || item.category === elements.category.value)
     .filter((item) => elements.status.value === "All" || item.status === elements.status.value)
     .filter((item) => matchesSearch(item, query))
     .sort((a, b) => a.command.localeCompare(b.command));
@@ -144,6 +156,8 @@ function createCommandCard(item) {
   item.platform.forEach((platform) => metadata.append(tag(platform, `platform-${platform.toLowerCase()}`)));
   const accessText = item.elevatedAccess ? `${item.access} · ${item.elevatedAccess} controls` : item.access;
   metadata.append(tag(accessText, `access-${item.access.toLowerCase()}`));
+  metadata.append(tag(item.category, "category-tag"));
+  if (item.accessNote) metadata.append(tag(item.accessNote, "access-note"));
   metadata.append(tag(item.status, `status-${item.status.toLowerCase()}`));
   card.append(top, usage, metadata);
   return card;
@@ -190,8 +204,8 @@ function setView(view) {
     button.setAttribute("aria-pressed", String(active));
   });
   elements.note.textContent = view === "public"
-    ? "Public view shows active commands everyone can use. Choose Staff reference to include moderator, owner, and planned tools."
-    : "Staff reference includes moderator and planned commands. This public directory is a reference—not a replacement for platform permissions.";
+    ? "Public view shows active commands everyone can use. Sapphire permissions remain configurable in its dashboard."
+    : "Staff reference includes moderator, owner, and planned commands. Sapphire permissions remain configurable and are enforced by Discord.";
   renderTabs();
   renderCommands();
 }
@@ -201,6 +215,7 @@ function clearFilters() {
   elements.search.value = "";
   elements.platform.value = "All";
   elements.access.value = "All";
+  elements.category.value = "All";
   elements.status.value = "All";
   renderTabs();
   renderCommands();
@@ -208,7 +223,7 @@ function clearFilters() {
 }
 
 elements.search.addEventListener("input", renderCommands);
-[elements.platform, elements.access, elements.status].forEach((select) => select.addEventListener("change", renderCommands));
+[elements.platform, elements.access, elements.category, elements.status].forEach((select) => select.addEventListener("change", renderCommands));
 elements.clear.addEventListener("click", clearFilters);
 elements.viewButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
 document.addEventListener("keydown", (event) => {

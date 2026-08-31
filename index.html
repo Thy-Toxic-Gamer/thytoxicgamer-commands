@@ -16,8 +16,8 @@
     <meta name="twitter:image" content="https://thy-toxic-gamer.github.io/thytoxicgamer-commands/toxic-command-center-banner-concept-v1.png" />
     <title>ThyToxicGamer Command Center</title>
     <link rel="preload" as="image" href="toxic-command-center-banner-v1.webp" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=2.0" />
-    <link rel="stylesheet" href="permission-colors.css?v=2.0" />
+    <link rel="stylesheet" href="styles.css?v=2.1" />
+    <link rel="stylesheet" href="permission-colors.css?v=2.1" />
   </head>
   <body>
     <main class="site-shell">
@@ -67,17 +67,19 @@
         <div class="filters" aria-label="Command filters">
           <label><span>Platform</span><select id="platform-filter"><option value="All">All platforms</option><option value="Twitch">Twitch</option><option value="YouTube">YouTube</option><option value="Discord">Discord</option></select></label>
           <label><span>Access</span><select id="access-filter"><option value="All">All access levels</option><option value="Everyone">Everyone</option><option value="Subscribers">Subscribers</option><option value="Moderator">Moderators</option><option value="Owner">Owner</option></select></label>
+          <label><span>Category</span><select id="category-filter"><option value="All">All categories</option></select></label>
           <label><span>Status</span><select id="status-filter"><option value="All">All statuses</option><option value="Active">Active</option><option value="Planned">Planned</option><option value="Disabled">Disabled</option></select></label>
           <p id="result-summary" class="result-summary" aria-live="polite"></p>
         </div>
 
-        <div id="view-note" class="view-note" role="note">Public view shows commands everyone can use. Choose Staff reference to include moderator and owner tools.</div>
+        <div id="view-note" class="view-note" role="note">Public view shows commands everyone can use. Sapphire permissions remain configurable in its dashboard.</div>
         <div id="command-list" class="command-list" aria-live="polite"></div>
       </section>
 
       <footer><span>☣ ThyToxicGamer Command Center</span><span>Availability may vary by platform, source, or permission.</span></footer>
     </main>
     <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-    <script src="script.js?v=2.0"></script>
+    <script src="sapphire-commands.js?v=2.1"></script>
+    <script src="script.js?v=2.1"></script>
   </body>
 </html>
