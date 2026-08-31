@@ -4,7 +4,7 @@ const commands = [
   { command: "!blur", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Explains the OBS blur used to hide in-game chat when it gets too toxic.", usage: "!blur" },
   { command: "!chatstats", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Displays available chat activity statistics.", usage: "!chatstats" },
   { command: "!commands", aliases: ["!cmds"], source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the link to this complete command directory.", usage: "!commands" },
-  { command: "!discord", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts an invite to the ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ Discord community.", usage: "!discord" },
+  { command: "!discord", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts an invite to  ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ Discord community.", usage: "!discord" },
   { command: "!donate", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Posts the StreamElements tip-page link.", usage: "!donate" },
   { command: "!drops", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shares current Twitch Drops information.", usage: "!drops" },
   { command: "!followage", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows how long a viewer has followed the channel.", usage: "!followage [username]" },
