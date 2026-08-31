@@ -2,6 +2,13 @@
 
 Public, searchable command directory for the ThyToxicGamer community.
 
+## Version 2.2
+
+- Strictly separated public and staff commands across every source tab.
+- Public view now contains only active commands available to everyone.
+- Staff view now contains only moderator and owner commands, plus shared commands with moderator controls.
+- Source-tab counts now reflect the selected audience.
+
 ## Version 2.1
 
 - Added all 79 Sapphire default slash commands using descriptions and syntax captured from Sapphire's built-in help.
@@ -25,7 +32,7 @@ The directory tracks Streamer.bot, StreamElements, Sapphire, Nightbot, and ThyTo
 
 ## Public and staff views
 
-Public view is the default and lists active commands available to everyone. Staff reference adds moderator, owner, and planned commands. The staff view is an organizational reference only; command permissions remain enforced by Twitch, Discord, and each bot platform.
+Public view is the default and lists only active commands available to everyone. The Staff commands view lists only moderator and owner tools, plus shared commands that expose moderator controls. Command permissions remain enforced by Twitch, Discord, and each bot platform.
 
 ## GitHub Pages
 

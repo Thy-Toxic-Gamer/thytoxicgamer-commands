@@ -69,7 +69,10 @@ function makeElement(tag, className, text) {
   return element;
 }
 
-function visibleForView(item) { return state.view === "staff" || (item.access === "Everyone" && item.status === "Active"); }
+function visibleForView(item) {
+  if (state.view === "public") return item.access === "Everyone" && item.status === "Active";
+  return item.access !== "Everyone" || Boolean(item.elevatedAccess);
+}
 function availableCommands() { return commands.filter(visibleForView); }
 
 function renderTabs() {
@@ -105,7 +108,10 @@ function getFilteredCommands() {
     .sort((a, b) => a.command.localeCompare(b.command));
 }
 
-function groupFor(item) { return ["Moderator", "Owner"].includes(item.access) ? item.access : "Viewer"; }
+function groupFor(item) {
+  if (state.view === "staff" && item.elevatedAccess) return item.elevatedAccess;
+  return ["Moderator", "Owner"].includes(item.access) ? item.access : "Viewer";
+}
 function tag(text, className = "") { return makeElement("span", `meta-tag ${className}`.trim(), text); }
 
 let toastTimer;
@@ -198,14 +204,17 @@ function renderCommands() {
 function setView(view) {
   state.view = view;
   state.source = "All";
+  elements.access.value = "All";
+  elements.category.value = "All";
+  elements.status.value = view === "public" ? "Active" : "All";
   elements.viewButtons.forEach((button) => {
     const active = button.dataset.view === view;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
   elements.note.textContent = view === "public"
-    ? "Public view shows active commands everyone can use. Sapphire permissions remain configurable in its dashboard."
-    : "Staff reference includes moderator, owner, and planned commands. Sapphire permissions remain configurable and are enforced by Discord.";
+    ? "Public view contains only active commands available to everyone across every source tab."
+    : "Staff view contains only moderator and owner tools, plus shared commands with moderator controls. Sapphire permissions remain configurable.";
   renderTabs();
   renderCommands();
 }
@@ -216,7 +225,7 @@ function clearFilters() {
   elements.platform.value = "All";
   elements.access.value = "All";
   elements.category.value = "All";
-  elements.status.value = "All";
+  elements.status.value = state.view === "public" ? "Active" : "All";
   renderTabs();
   renderCommands();
   elements.search.focus();

@@ -45,7 +45,7 @@
           </div>
           <div class="view-switch" role="group" aria-label="Command audience">
             <button class="view-button active" type="button" data-view="public" aria-pressed="true">Public commands</button>
-            <button class="view-button" type="button" data-view="staff" aria-pressed="false">Staff reference</button>
+            <button class="view-button" type="button" data-view="staff" aria-pressed="false">Staff commands</button>
           </div>
         </div>
 
@@ -68,18 +68,18 @@
           <label><span>Platform</span><select id="platform-filter"><option value="All">All platforms</option><option value="Twitch">Twitch</option><option value="YouTube">YouTube</option><option value="Discord">Discord</option></select></label>
           <label><span>Access</span><select id="access-filter"><option value="All">All access levels</option><option value="Everyone">Everyone</option><option value="Subscribers">Subscribers</option><option value="Moderator">Moderators</option><option value="Owner">Owner</option></select></label>
           <label><span>Category</span><select id="category-filter"><option value="All">All categories</option></select></label>
-          <label><span>Status</span><select id="status-filter"><option value="All">All statuses</option><option value="Active">Active</option><option value="Planned">Planned</option><option value="Disabled">Disabled</option></select></label>
+          <label><span>Status</span><select id="status-filter"><option value="All">All statuses</option><option value="Active" selected>Active</option><option value="Planned">Planned</option><option value="Disabled">Disabled</option></select></label>
           <p id="result-summary" class="result-summary" aria-live="polite"></p>
         </div>
 
-        <div id="view-note" class="view-note" role="note">Public view shows commands everyone can use. Sapphire permissions remain configurable in its dashboard.</div>
+        <div id="view-note" class="view-note" role="note">Public commands are separated from staff-only commands across every source tab.</div>
         <div id="command-list" class="command-list" aria-live="polite"></div>
       </section>
 
       <footer><span>☣ ThyToxicGamer Command Center</span><span>Availability may vary by platform, source, or permission.</span></footer>
     </main>
     <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-    <script src="sapphire-commands.js?v=2.1"></script>
-    <script src="script.js?v=2.1"></script>
+    <script src="sapphire-commands.js?v=2.2"></script>
+    <script src="script.js?v=2.2"></script>
   </body>
 </html>
