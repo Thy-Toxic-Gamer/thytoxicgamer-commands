@@ -36,6 +36,27 @@ button, select { cursor: pointer; }
 .eyebrow { margin: 0 0 6px; color: var(--toxic); font-size: clamp(20px,2.2vw,30px); line-height: 1.15; letter-spacing: .04em; text-shadow: 0 0 18px rgba(134,255,20,.22); }
 h1 { margin: 0; font-size: clamp(30px,4vw,50px); line-height: 1; letter-spacing: -.04em; }
 .intro { margin: 11px 0 0; color: var(--muted); }
+
+.central-command-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid rgba(134,255,20,.38);
+  border-radius: 12px;
+  color: var(--toxic);
+  background: rgba(134,255,20,.06);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.central-command-return:hover, .central-command-return:focus-visible { color: #071006; background: var(--toxic); }
+
 .header-stats { display: flex; gap: 12px; }
 .count-card { min-width: 132px; padding: 15px 18px; border: 1px solid var(--border); border-radius: 14px; background: rgba(4,8,5,.7); }
 .count-card strong { display: block; color: var(--toxic); font-size: 30px; line-height: 1; text-shadow: 0 0 20px rgba(134,255,20,.2); }
