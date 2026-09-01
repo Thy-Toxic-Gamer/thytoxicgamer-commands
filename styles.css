@@ -25,7 +25,7 @@ body {
 }
 button, input, select { font: inherit; }
 button, select { cursor: pointer; }
-.site-shell { width: min(1440px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 34px; }
+.site-shell { position: relative; z-index: 1; width: min(1440px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 34px; }
 .site-header {
   display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 25px 28px;
   border: 1px solid rgba(134,255,20,.24); border-radius: 20px;
@@ -228,3 +228,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 22px
   .ecosystem-hero .header-stats { flex-direction:row; }
   .ecosystem-rail { gap:9px; overflow:hidden; white-space:nowrap; }
 }
+
+/* Shared toxic watermark — branded background layer */
+body { isolation: isolate; }
+body::before { content:"☣"; position:fixed; z-index:0; top:16vh; right:-9vw; color:rgba(168,240,0,.022); font:900 clamp(360px,52vw,760px)/1 "Arial Black","Segoe UI Symbol",sans-serif; -webkit-text-stroke:2px rgba(168,240,0,.065); text-shadow:0 0 80px rgba(168,240,0,.055),0 0 190px rgba(168,240,0,.025); transform:rotate(-10deg); pointer-events:none; user-select:none; }
+@media (max-width:700px) { body::before { top:28vh; right:-32vw; font-size:clamp(340px,105vw,560px); opacity:.78; } }
