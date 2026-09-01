@@ -235,6 +235,7 @@ elements.search.addEventListener("input", renderCommands);
 [elements.platform, elements.access, elements.category, elements.status].forEach((select) => select.addEventListener("change", renderCommands));
 elements.clear.addEventListener("click", clearFilters);
 elements.viewButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
+document.querySelectorAll("[data-command-view]").forEach((link) => link.addEventListener("click", () => setView(link.dataset.commandView)));
 document.addEventListener("keydown", (event) => {
   if (event.key === "/" && document.activeElement !== elements.search) { event.preventDefault(); elements.search.focus(); }
   if (event.key === "Escape" && document.activeElement === elements.search) { elements.search.value = ""; elements.search.blur(); renderCommands(); }
