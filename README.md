@@ -1,4 +1,4 @@
-# ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ Command Center
+# ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ Command Directory
 
 Public, searchable command directory for  ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ community.
 
@@ -6,7 +6,7 @@ Public, searchable command directory for  ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜�
 
 **Ver. 1.0 — Unified Central Command release — September 1, 2026**
 
-The milestones below describe pre-launch development. The official Command Center release is **Build 1.0**.
+The milestones below describe pre-launch development. The official Command Directory release is **Build 1.0**.
 
 ## Development milestone — Audience separation
 
