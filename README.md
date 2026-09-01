@@ -2,21 +2,27 @@
 
 Public, searchable command directory for  ⁅𝐓𝐡𝐲𝐓☣︎𝐱𝐢𝐜𝐆𝐚𝐦𝐞𝐫⁆ community.
 
-## Version 2.2
+## Current public release
+
+**Ver. 1.0 — Unified Central Command release — September 1, 2026**
+
+The numbered entries below are retained as development-build history.
+
+## Development build 2.2
 
 - Strictly separated public and staff commands across every source tab.
 - Public view now contains only active commands available to everyone.
 - Staff view now contains only moderator and owner commands, plus shared commands with moderator controls.
 - Source-tab counts now reflect the selected audience.
 
-## Version 2.1
+## Development build 2.1
 
 - Added all 79 Sapphire default slash commands using descriptions and syntax captured from Sapphire's built-in help.
 - Added Sapphire categories for General, Auto Moderation, Information, Interactions, Join Roles, Logging, Messages, Moderation, and Reaction Roles.
 - Added a category filter to make the expanded directory easier to search.
 - Marked Sapphire permissions as configurable in its dashboard.
 
-## Version 2.0
+## Development build 2.0
 
 - Added separate public-command and staff-reference views.
 - Added source tabs for Streamer.bot, StreamElements, Sapphire, Nightbot, and the future ThyToxicBot.
