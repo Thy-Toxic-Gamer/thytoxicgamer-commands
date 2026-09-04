@@ -1,4 +1,5 @@
 .access-everyone { color: #a9dcff; border-color: #31536a; background: #162733; }
 .access-subscribers { color: #f2aaff; border-color: #643c6b; background: #301c34; }
 .access-moderator { color: #35f68a; border-color: #276a47; background: #112f20; }
+.access-admin { color: #ff75d8; border-color: #7a2f68; background: #34152d; }
 .access-owner { color: #ffbd42; border-color: #6a4b12; background: #30220b; }
