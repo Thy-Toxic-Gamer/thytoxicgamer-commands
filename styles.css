@@ -103,6 +103,7 @@ h1 { margin: 0; font-size: clamp(30px,4vw,50px); line-height: 1; letter-spacing:
 .group-heading p { margin: 3px 0 0; color: #819084; font-size: 11px; }
 .group-count { min-width: 32px; padding: 5px 9px; border-radius: 99px; color: var(--toxic); background: rgba(134,255,20,.08); text-align: center; font-size: 12px; font-weight: 900; }
 .group-moderator { border-left-color: #35f68a; }
+.group-admin { border-left-color: #ff4fa3; }
 .group-owner { border-left-color: #ffb21a; }
 .command-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
 .command-card { min-width: 0; padding: 16px; border: 1px solid var(--border); border-radius: 13px; background: linear-gradient(135deg, rgba(134,255,20,.025), transparent 45%), var(--surface-soft); transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
