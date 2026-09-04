@@ -67,6 +67,8 @@ const commands = [
   { command: "/t info role", source: "ThyToxicBot", access: "Everyone", platform: ["Discord"], status: "Active", category: "Information", description: "Shows a role's ID, color, position, and mentionable setting.", usage: "/t info role role:<role>" },
   { command: "/t info channel", source: "ThyToxicBot", access: "Everyone", platform: ["Discord"], status: "Active", category: "Information", description: "Shows a channel's ID, type, topic, and category.", usage: "/t info channel [channel]" },
   { command: "/t info emoji", source: "ThyToxicBot", access: "Everyone", platform: ["Discord"], status: "Active", category: "Information", description: "Lists server emojis or searches for a custom emoji by name or ID.", usage: "/t info emoji [emoji]" },
+  { command: "/tstaff send", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Staff Utilities", description: "Sends a staff-authored message to a selected channel while preventing accidental mentions.", usage: "/tstaff send channel:<channel> message:<message>" },
+  { command: "/tstaff archive", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Staff Utilities", description: "Saves up to 100 recent channel messages as a text transcript in the moderation log, optionally filtered to one member.", usage: "/tstaff archive [channel] [user] [limit]" },
   ...sapphireCommands,
 ].map((item) => ({
   category: item.category || (item.source === "ThyToxicBot" ? "Moderation" : item.source === "Nightbot" ? "Moderation" : "Channel"),
