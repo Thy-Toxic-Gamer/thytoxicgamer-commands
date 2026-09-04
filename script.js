@@ -33,10 +33,20 @@ const commands = [
   { command: "!watchtime", source: "StreamElements", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows a viewer's accumulated channel watch time.", usage: "!watchtime [username]" },
   { command: "!filters", source: "Nightbot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Manages Nightbot's spam-protection filters.", usage: "!filters <filter> [setting]" },
   { command: "!regulars", source: "Nightbot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Adds or removes viewers from Nightbot's regular-user list.", usage: "!regulars <add|delete> <username>" },
-  { command: "t!warn", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Records a moderation warning for a Discord member.", usage: "t!warn <member> <reason>" },
-  { command: "t!mute", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Temporarily prevents a Discord member from chatting.", usage: "t!mute <member> <duration> [reason]" },
-  { command: "t!kick", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Removes a Discord member from the server.", usage: "t!kick <member> [reason]" },
-  { command: "t!ban", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Planned", description: "Bans a Discord member from the server.", usage: "t!ban <member> [reason]" },
+  { command: "/t warn", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Records a warning, creates a TTG-MOD case, and sends secure appeal information.", usage: "/t warn user:<member> reason:<reason>" },
+  { command: "/t unwarn", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Reverses an active warning using its original case number.", usage: "/t unwarn user:<member> case_number:<case> reason:<reason>" },
+  { command: "/t mute", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Temporarily mutes a member, creates a case, and sends secure appeal information.", usage: "/t mute user:<member> duration:<duration> reason:<reason>" },
+  { command: "/t unmute", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Removes a timeout using the original mute case.", usage: "/t unmute user:<member> case_number:<case> reason:<reason>" },
+  { command: "/t kick", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Kicks a member after creating an appeal-ready moderation case.", usage: "/t kick user:<member> reason:<reason>" },
+  { command: "/t ban", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Bans a member after creating an appeal-ready moderation case.", usage: "/t ban user:<member> reason:<reason> [delete_history]" },
+  { command: "/t unban", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Reverses an active ban using its original case number.", usage: "/t unban user_id:<member> case_number:<case> reason:<reason>" },
+  { command: "/t appealreply", source: "ThyToxicBot", access: "Moderator", platform: ["Discord"], status: "Active", category: "Moderation", description: "Privately replies to a punished member through their case conversation.", usage: "/t appealreply case_number:<case> message:<private reply>" },
+  { command: "/t masskick", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Moderation", description: "Preview-first kick for up to five members with explicit confirmation.", usage: "/t masskick user1:<member> reason:<reason> [user2-user5] [confirmation_code]" },
+  { command: "/t massban", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Moderation", description: "Preview-first ban for up to five members with explicit confirmation.", usage: "/t massban user1:<member> reason:<reason> [user2-user5] [confirmation_code]" },
+  { command: "/t nameban", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Moderation", description: "Preview-first ban of up to five members matching a username, display name, or nickname.", usage: "/t nameban name:<text> reason:<reason> [confirmation_code]" },
+  { command: "/t timeban", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Moderation", description: "Preview-first raid response for up to five recent joins, optionally filtered by account age.", usage: "/t timeban joined_within:<window> reason:<reason> [account_age] [confirmation_code]" },
+  { command: "/t cleanup", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Moderation", description: "Preview-first deletion of recent unpinned messages, optionally filtered to one member.", usage: "/t cleanup amount:<1-100> reason:<reason> [user] [confirmation_code]" },
+  { command: "/t prune", source: "ThyToxicBot", access: "Owner", platform: ["Discord"], status: "Active", category: "Moderation", description: "Owner-only preview of inactive Members; refuses estimates above five.", usage: "/t prune days:<1|7|30> reason:<reason> [confirmation_code]" },
   ...sapphireCommands,
 ].map((item) => ({
   category: item.category || (item.source === "ThyToxicBot" ? "Moderation" : item.source === "Nightbot" ? "Moderation" : "Channel"),
@@ -110,7 +120,7 @@ function getFilteredCommands() {
 
 function groupFor(item) {
   if (state.view === "staff" && item.elevatedAccess) return item.elevatedAccess;
-  return ["Moderator", "Owner"].includes(item.access) ? item.access : "Viewer";
+  return ["Moderator", "Admin", "Owner"].includes(item.access) ? item.access : "Viewer";
 }
 function tag(text, className = "") { return makeElement("span", `meta-tag ${className}`.trim(), text); }
 
@@ -173,7 +183,7 @@ function renderCommands() {
   const filtered = getFilteredCommands();
   elements.list.replaceChildren();
   elements.summary.textContent = `${filtered.length} ${filtered.length === 1 ? "command" : "commands"} shown`;
-  ["Viewer", "Moderator", "Owner"].forEach((group) => {
+  ["Viewer", "Moderator", "Admin", "Owner"].forEach((group) => {
     const groupCommands = filtered.filter((item) => groupFor(item) === group);
     if (!groupCommands.length) return;
     const section = makeElement("section", "command-group");
@@ -181,7 +191,7 @@ function renderCommands() {
     const headingCopy = makeElement("div");
     headingCopy.append(
       makeElement("h3", "", group === "Viewer" ? "Viewer commands" : `${group} commands`),
-      makeElement("p", "", group === "Viewer" ? "Available to the community" : group === "Moderator" ? "Channel and server management tools" : "Broadcaster-only controls"),
+      makeElement("p", "", group === "Viewer" ? "Available to the community" : group === "Moderator" ? "Routine moderation and case communication" : group === "Admin" ? "Trusted high-impact and emergency tools" : "Owner-only protected controls"),
     );
     heading.append(headingCopy, makeElement("span", "group-count", groupCommands.length));
     const grid = makeElement("div", "command-grid");
@@ -214,7 +224,7 @@ function setView(view) {
   });
   elements.note.textContent = view === "public"
     ? "Public view contains only active commands available to everyone across every source tab."
-    : "Staff view contains only moderator and owner tools, plus shared commands with moderator controls. Sapphire permissions remain configurable.";
+    : "Staff view separates Moderator, Admin, and Owner tools, plus shared commands with elevated controls.";
   renderTabs();
   renderCommands();
 }
