@@ -8,7 +8,7 @@ const disabledSapphireCommands = new Set([
   "info", "list", "ping", "avatarinfo", "bannerinfo", "channelinfo",
   "emojiinfo", "guildbannerinfo", "guildchannelcount", "guildiconinfo",
   "guildinfo", "guildmembercount", "guildsplashinfo", "roleinfo", "userinfo",
-  "report",
+  "report", "sendmessage", "archive",
 ]);
 
 const ownerSapphireCommands = new Set([
