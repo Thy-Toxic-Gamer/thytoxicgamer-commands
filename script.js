@@ -60,7 +60,7 @@ const commands = [
 ].map((item) => ({
   category: item.category || (item.source === "ThyToxicBot" ? "Moderation" : item.source === "Nightbot" ? "Moderation" : "Channel"),
   ...item,
-}));
+})).filter((item) => item.status !== "Disabled");
 
 const sources = ["All", "Streamer.bot", "StreamElements", "Sapphire", "Nightbot", "ThyToxicBot"];
 const state = { source: "All", view: "public" };
