@@ -3,6 +3,8 @@ const disabledSapphireCommands = new Set([
   "massban", "masskick", "massmute", "masswarn",
   "nameban", "namekick", "namemute", "namewarn",
   "timeban", "timekick", "timemute", "timewarn", "prune", "purge",
+  "caselist", "caseinfo", "caseupdate", "caseclose", "warns", "usernotes",
+  "send-to-appeal", "lock", "unlock", "setslowmode",
 ]);
 
 const ownerSapphireCommands = new Set([
