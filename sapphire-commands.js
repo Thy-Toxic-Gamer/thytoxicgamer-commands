@@ -1,14 +1,44 @@
+const disabledSapphireCommands = new Set([
+  "ban", "kick", "mute", "unmute", "unban", "warn", "unwarn",
+  "massban", "masskick", "massmute", "masswarn",
+  "nameban", "namekick", "namemute", "namewarn",
+  "timeban", "timekick", "timemute", "timewarn", "prune", "purge",
+]);
+
+const ownerSapphireCommands = new Set([
+  "permissions", "enable", "disable", "config", "automoderation",
+  "interactions", "transfer-slash-commands-to-cb", "joinroles", "log",
+  "casedelete", "predefinedreasons", "lockall", "unlockall",
+  "reactionroles", "reactionrolesconfig",
+]);
+
+const adminSapphireCommands = new Set([
+  "caseupdate", "caseclose", "casesplit", "block-appeal-user",
+  "unblock-appeal-user", "joinguardwhitelist", "linkcaseview",
+  "lock", "unlock", "setslowmode", "setproof",
+  "report-blacklist", "report-ignoreall", "report-sendmissing",
+  "restore-appeal-messages",
+]);
+
 function sapphireCommand(command, category, access, description, usage = command) {
+  const disabled = disabledSapphireCommands.has(command);
+  const finalAccess = ownerSapphireCommands.has(command)
+    ? "Owner"
+    : adminSapphireCommands.has(command)
+    ? "Admin"
+    : access;
   return {
-    command: `/${command}`,
+    command: "/" + command,
     source: "Sapphire",
-    access,
+    access: finalAccess,
     platform: ["Discord"],
-    status: "Active",
+    status: disabled ? "Disabled" : "Active",
     category,
-    description,
-    usage: `/${usage}`,
-    accessNote: "Permissions configurable in Sapphire",
+    description: disabled
+      ? description + " Disabled here because ThyToxicBot now owns this moderation function or its safer replacement."
+      : description,
+    usage: "/" + usage,
+    accessNote: disabled ? "Moved to ThyToxicBot safety controls" : "Assigned by server staff policy",
   };
 }
 
