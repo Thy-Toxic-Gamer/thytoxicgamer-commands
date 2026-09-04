@@ -126,6 +126,10 @@ h1 { margin: 0; font-size: clamp(30px,4vw,50px); line-height: 1; letter-spacing:
 .usage-code { color: #dfe8e1; font-size: 12px; white-space: nowrap; }
 .metadata { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .meta-tag { padding: 4px 7px; border: 1px solid #304037; border-radius: 99px; color: #a9b8ad; background: #172019; font-size: 9px; font-weight: 900; letter-spacing: .045em; text-transform: uppercase; }
+.access-everyone { color: #69d9f6; border-color: #277c94; background: rgba(63,201,239,.12); }
+.access-moderator { color: #db7af2; border-color: #74308a; background: rgba(198,80,232,.12); }
+.access-admin { color: #ff69ad; border-color: #8b2456; background: rgba(255,47,146,.12); }
+.access-owner { color: #55c77d; border-color: #27683e; background: rgba(36,154,80,.14); }
 .platform-twitch { color: #c6a9ff; border-color: #4f3c74; background: #251c36; }
 .platform-youtube { color: #ff9c9c; border-color: #6a3030; background: #321717; }
 .platform-discord { color: #afb9ff; border-color: #3f487a; background: #1d2140; }
