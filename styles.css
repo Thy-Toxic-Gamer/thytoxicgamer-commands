@@ -102,9 +102,14 @@ h1 { margin: 0; font-size: clamp(30px,4vw,50px); line-height: 1; letter-spacing:
 .group-heading h3 { margin: 0; font-size: 16px; }
 .group-heading p { margin: 3px 0 0; color: #819084; font-size: 11px; }
 .group-count { min-width: 32px; padding: 5px 9px; border-radius: 99px; color: var(--toxic); background: rgba(134,255,20,.08); text-align: center; font-size: 12px; font-weight: 900; }
-.group-moderator { border-left-color: #35f68a; }
-.group-admin { border-left-color: #ff4fa3; }
-.group-owner { border-left-color: #ffb21a; }
+.group-viewer { border-left-color: #3fc9ef; }
+.group-moderator { border-left-color: #c650e8; }
+.group-admin { border-left-color: #ff2f92; }
+.group-owner { border-left-color: #249a50; }
+.group-viewer .group-count { color: #69d9f6; background: rgba(63,201,239,.10); }
+.group-moderator .group-count { color: #db7af2; background: rgba(198,80,232,.10); }
+.group-admin .group-count { color: #ff69ad; background: rgba(255,47,146,.10); }
+.group-owner .group-count { color: #55c77d; background: rgba(36,154,80,.11); }
 .command-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
 .command-card { min-width: 0; padding: 16px; border: 1px solid var(--border); border-radius: 13px; background: linear-gradient(135deg, rgba(134,255,20,.025), transparent 45%), var(--surface-soft); transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
 .command-card:hover { transform: translateY(-1px); border-color: var(--border-bright); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
