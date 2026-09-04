@@ -5,6 +5,10 @@ const disabledSapphireCommands = new Set([
   "timeban", "timekick", "timemute", "timewarn", "prune", "purge",
   "caselist", "caseinfo", "caseupdate", "caseclose", "warns", "usernotes",
   "send-to-appeal", "lock", "unlock", "setslowmode",
+  "info", "list", "ping", "avatarinfo", "bannerinfo", "channelinfo",
+  "emojiinfo", "guildbannerinfo", "guildchannelcount", "guildiconinfo",
+  "guildinfo", "guildmembercount", "guildsplashinfo", "roleinfo", "userinfo",
+  "report",
 ]);
 
 const ownerSapphireCommands = new Set([
