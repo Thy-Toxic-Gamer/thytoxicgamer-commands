@@ -38,7 +38,9 @@ The directory tracks Streamer.bot, StreamElements, Sapphire, Nightbot, and ThyTo
 
 ## Public and staff views
 
-Public view is the default and lists only active commands available to everyone. The Staff commands view lists only moderator and owner tools, plus shared commands that expose moderator controls. Command permissions remain enforced by Twitch, Discord, and each bot platform.
+Public view is the default and shows community commands, with the status filter set to Active. Staff view groups Moderator, Admin, and Owner tools, including shared commands that expose elevated controls. Shared commands display separate access badges and match the elevated access filter in Staff view. Command permissions remain enforced by Twitch, Discord, and each bot platform.
+
+Stream commands have specific categories such as Music, Polls, Game Requests, Moderation, and Stream Management. Sapphire access labels describe the intended staff policy; its live restrictions are configurable in the Sapphire dashboard.
 
 ## GitHub Pages
 

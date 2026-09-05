@@ -1,3 +1,15 @@
+const streamCategories = {
+  "!tags": "Stream Management", "!game": "Stream Management", "!title": "Stream Management", "!marker": "Stream Management",
+  "!accountage": "Information", "!followage": "Information", "!uptime": "Information", "!drops": "Information",
+  "!chatstats": "Statistics", "!leaderboard": "Statistics", "!top": "Statistics", "!watchtime": "Statistics",
+  "!commands": "Information", "!blur": "Information", "!pcsetup": "Information", "!pcspecs": "Information",
+  "!discord": "Community Links", "!socials": "Community Links", "!youtube": "Community Links", "!lurk": "Community",
+  "!donate": "Support", "!playlist": "Music", "!song": "Music",
+  "!poll": "Polls", "!pollpanel": "Polls", "!owned": "Game Requests", "!requestgame": "Game Requests", "!reviewrequest": "Game Requests",
+  "!modhelp": "Staff Utilities", "!modview": "Staff Utilities", "!ping": "Staff Utilities",
+  "!permit": "Moderation", "!filters": "Moderation", "!regulars": "Moderation",
+};
+
 const commands = [
   { command: "!tags", source: "Streamer.bot", access: "Moderator", platform: ["Twitch"], status: "Active", description: "Updates the stream tags used for discovery.", usage: "!tags <tags>" },
   { command: "!accountage", source: "Streamer.bot", access: "Everyone", platform: ["Twitch"], status: "Active", description: "Shows how old a viewer's Twitch account is.", usage: "!accountage [username]" },
@@ -76,8 +88,8 @@ const commands = [
   { command: "/tstaff ticketpanel", source: "ThyToxicBot", access: "Admin", platform: ["Discord"], status: "Active", category: "Tickets", description: "Publishes the private four-button Ticket Center for General Support, Reports, Staff Inquiries, and Suggestions. The live ticket-status message updates automatically.", usage: "/tstaff ticketpanel" },
   ...sapphireCommands,
 ].map((item) => ({
-  category: item.category || (item.source === "ThyToxicBot" ? "Moderation" : item.source === "Nightbot" ? "Moderation" : "Channel"),
   ...item,
+  category: item.category || streamCategories[item.command] || "Information",
 })).filter((item) => item.status !== "Disabled");
 
 const sources = ["All", "Streamer.bot", "StreamElements", "Sapphire", "Nightbot", "ThyToxicBot"];
@@ -107,9 +119,10 @@ function makeElement(tag, className, text) {
 }
 
 function visibleForView(item) {
-  if (state.view === "public") return item.access === "Everyone" && item.status === "Active";
-  return item.access !== "Everyone" || Boolean(item.elevatedAccess);
+  if (state.view === "public") return ["Everyone", "Subscribers"].includes(item.access);
+  return ["Moderator", "Admin", "Owner"].includes(item.access) || Boolean(item.elevatedAccess);
 }
+function accessForView(item) { return state.view === "staff" ? item.elevatedAccess || item.access : item.access; }
 function availableCommands() { return commands.filter(visibleForView); }
 
 function renderTabs() {
@@ -129,7 +142,7 @@ function renderTabs() {
 
 function matchesSearch(item, query) {
   if (!query) return true;
-  return [item.command, ...(item.aliases || []), item.source, item.access, item.category, item.accessNote || "", ...item.platform, item.status, item.description, item.usage]
+  return [item.command, ...(item.aliases || []), item.source, item.access, item.elevatedAccess || "", item.category, item.accessNote || "", ...item.platform, item.status, item.description, item.usage]
     .some((value) => value.toLowerCase().includes(query));
 }
 
@@ -138,7 +151,7 @@ function getFilteredCommands() {
   return availableCommands()
     .filter((item) => state.source === "All" || item.source === state.source)
     .filter((item) => elements.platform.value === "All" || item.platform.includes(elements.platform.value))
-    .filter((item) => elements.access.value === "All" || item.access === elements.access.value)
+    .filter((item) => elements.access.value === "All" || accessForView(item) === elements.access.value)
     .filter((item) => elements.category.value === "All" || item.category === elements.category.value)
     .filter((item) => elements.status.value === "All" || item.status === elements.status.value)
     .filter((item) => matchesSearch(item, query))
@@ -197,8 +210,8 @@ function createCommandCard(item) {
   const metadata = makeElement("div", "metadata");
   metadata.append(tag(item.source, `source-${item.source.toLowerCase().replaceAll(".", "").replaceAll(" ", "-")}`));
   item.platform.forEach((platform) => metadata.append(tag(platform, `platform-${platform.toLowerCase()}`)));
-  const accessText = item.elevatedAccess ? `${item.access} · ${item.elevatedAccess} controls` : item.access;
-  metadata.append(tag(accessText, `access-${item.access.toLowerCase()}`));
+  metadata.append(tag(item.access, `access-${item.access.toLowerCase()}`));
+  if (item.elevatedAccess) metadata.append(tag(`${item.elevatedAccess} controls`, `access-${item.elevatedAccess.toLowerCase()}`));
   metadata.append(tag(item.category, "category-tag"));
   if (item.accessNote) metadata.append(tag(item.accessNote, "access-note"));
   metadata.append(tag(item.status, `status-${item.status.toLowerCase()}`));
@@ -250,7 +263,7 @@ function setView(view) {
     button.setAttribute("aria-pressed", String(active));
   });
   elements.note.textContent = view === "public"
-    ? "Public view contains only active commands available to everyone across every source tab."
+    ? "Public view shows community commands. Access badges identify restrictions; the Status filter controls availability."
     : "Staff view separates Moderator, Admin, and Owner tools, plus shared commands with elevated controls.";
   renderTabs();
   renderCommands();
